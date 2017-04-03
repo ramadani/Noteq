@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "824974847213",
+    "firebase_url": "https://noteq-18e63.firebaseio.com",
+    "project_id": "noteq-18e63",
+    "storage_bucket": "noteq-18e63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824974847213:android:a6a50afea4db3e2e",
+        "android_client_info": {
+          "package_name": "id.ramadani.noteq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824974847213-7j0bjc6na6ietqafe8a297a71k3f4ijp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ramadani.noteq",
+            "certificate_hash": "dbb8a3814f1c1994456b8e89159db641ea09f2bb"
+          }
+        },
+        {
+          "client_id": "824974847213-lcasjumnnpff2o0qtkpdgav3v28gq3h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCylbiTwl3FAwcUYqroLWXMwpvphCs-x-o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824974847213-lcasjumnnpff2o0qtkpdgav3v28gq3h6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
