@@ -12,15 +12,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import id.ramadani.noteq.adapter.NotesAdapter;
 import id.ramadani.noteq.model.Note;
+import id.ramadani.noteq.presenter.NotesPresenter;
+import id.ramadani.noteq.view.NotesView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NotesView {
 
     private RecyclerView mRvNotes;
     private NotesAdapter mNotesAdapter;
     private ArrayList<Note> mNotes;
+    private NotesPresenter mNotesPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +45,12 @@ public class MainActivity extends AppCompatActivity {
         mRvNotes = (RecyclerView) findViewById(R.id.rv_note);
         mNotes = new ArrayList<Note>();
         mNotesAdapter = new NotesAdapter(this, mNotes);
+        mNotesPresenter = new NotesPresenter(this);
 
         mRvNotes.setAdapter(mNotesAdapter);
         mRvNotes.setLayoutManager(new LinearLayoutManager(this));
+
+        mNotesPresenter.onCreate();
     }
 
     @Override
@@ -66,5 +73,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void addNotesToList(List<Note> notes) {
+        mNotes.addAll(notes);
+        mNotesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addNoteToList(Note note) {
+        mNotes.add(note);
+        mNotesAdapter.notifyDataSetChanged();
     }
 }
