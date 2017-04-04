@@ -4,12 +4,23 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import id.ramadani.noteq.adapter.NotesAdapter;
+import id.ramadani.noteq.model.Note;
+
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView mRvNotes;
+    private NotesAdapter mNotesAdapter;
+    private ArrayList<Note> mNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        mRvNotes = (RecyclerView) findViewById(R.id.rv_note);
+        mNotes = new ArrayList<Note>();
+        mNotesAdapter = new NotesAdapter(this, mNotes);
+
+        mRvNotes.setAdapter(mNotesAdapter);
+        mRvNotes.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
