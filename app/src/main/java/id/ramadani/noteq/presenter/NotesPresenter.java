@@ -1,5 +1,11 @@
 package id.ramadani.noteq.presenter;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 import id.ramadani.noteq.model.Note;
@@ -13,18 +19,45 @@ public class NotesPresenter {
 
     private final NotesView notesView;
 
+    private DatabaseReference mNoteRef;
+    private ValueEventListener mNotesListerner;
+
     public NotesPresenter(NotesView notesView) {
         this.notesView = notesView;
     }
 
     public void onCreate() {
-        ArrayList<Note> notes = new ArrayList<Note>();
-        notes.add(new Note("Lorem Ipsum", "Lorem Ipsum Great Gan"));
-        notes.add(new Note("Lorem Ipsum 2", "Lorem Ipsum Great Gan 2"));
-        notes.add(new Note("Lorem Ipsum 3", "Lorem Ipsum Great Gan 3"));
-        notes.add(new Note("Lorem Ipsum 4", "Lorem Ipsum Great Gan 4"));
-        notes.add(new Note("Lorem Ipsum 5", "Lorem Ipsum Great Gan 5"));
+        mNoteRef = FirebaseDatabase.getInstance().getReference("notes");
+    }
 
-        this.notesView.addNotesToList(notes);
+    public void onStart() {
+        ValueEventListener notesListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Note> notes = new ArrayList<Note>();
+
+                for (DataSnapshot noteSnapshot: dataSnapshot.getChildren()) {
+                    Note note = noteSnapshot.getValue(Note.class);
+                    notes.add(note);
+                }
+
+                notesView.addNotesToList(notes);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        mNoteRef.addValueEventListener(notesListener);
+
+        mNotesListerner = notesListener;
+    }
+
+    public void onStop() {
+        if (mNotesListerner != null) {
+            mNoteRef.removeEventListener(mNotesListerner);
+        }
     }
 }
