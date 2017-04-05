@@ -1,12 +1,10 @@
 package id.ramadani.noteq.presenter;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 import id.ramadani.noteq.model.Note;
 import id.ramadani.noteq.view.NotesView;
@@ -20,7 +18,7 @@ public class NotesPresenter {
     private final NotesView notesView;
 
     private DatabaseReference mNoteRef;
-    private ValueEventListener mNotesListerner;
+    private ChildEventListener mNoteChildListener;
 
     public NotesPresenter(NotesView notesView) {
         this.notesView = notesView;
@@ -31,17 +29,26 @@ public class NotesPresenter {
     }
 
     public void onStart() {
-        ValueEventListener notesListener = new ValueEventListener() {
+        ChildEventListener childEventListener = new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Note> notes = new ArrayList<Note>();
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Note note = dataSnapshot.getValue(Note.class);
+                notesView.addNoteToList(note);
+            }
 
-                for (DataSnapshot noteSnapshot: dataSnapshot.getChildren()) {
-                    Note note = noteSnapshot.getValue(Note.class);
-                    notes.add(note);
-                }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                notesView.addNotesToList(notes);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -50,14 +57,14 @@ public class NotesPresenter {
             }
         };
 
-        mNoteRef.addValueEventListener(notesListener);
+        mNoteRef.addChildEventListener(childEventListener);
 
-        mNotesListerner = notesListener;
+        mNoteChildListener = childEventListener;
     }
 
     public void onStop() {
-        if (mNotesListerner != null) {
-            mNoteRef.removeEventListener(mNotesListerner);
+        if (mNoteChildListener != null) {
+            mNoteRef.removeEventListener(mNoteChildListener);
         }
     }
 }

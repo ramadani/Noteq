@@ -1,9 +1,12 @@
 package id.ramadani.noteq.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by dani on 4/4/17.
  */
 
+@IgnoreExtraProperties
 public class Note {
     private String title;
     private String content;
