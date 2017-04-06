@@ -1,5 +1,6 @@
 package id.ramadani.noteq;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +23,8 @@ import id.ramadani.noteq.util.MarginItemDecoration;
 import id.ramadani.noteq.view.NotesView;
 
 public class MainActivity extends AppCompatActivity implements NotesView {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private RecyclerView mRvNotes;
     private NotesAdapter mNotesAdapter;
@@ -38,8 +42,10 @@ public class MainActivity extends AppCompatActivity implements NotesView {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Log.d(TAG, "klik floating action button");
+
+                Intent intent = new Intent(view.getContext(), NewNoteActivity.class);
+                startActivity(intent);
             }
         });
 

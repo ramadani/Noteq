@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NewNoteActivity" android:label="@string/new_note" />
     </application>
 
 </manifest>

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Noteq</string>
+    <string name="new_note">Create New Note</string>
     <string name="action_settings">Settings</string>
 </resources>
