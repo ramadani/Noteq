@@ -9,7 +9,5 @@ import id.ramadani.noteq.model.Note;
  */
 
 public interface NotesView {
-    void addNotesToList(List<Note> notes);
-
-    void addNoteToList(Note note);
+    void refreshNoteList(List<Note> notes);
 }

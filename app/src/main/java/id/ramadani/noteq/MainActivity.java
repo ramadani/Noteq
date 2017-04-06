@@ -90,14 +90,9 @@ public class MainActivity extends AppCompatActivity implements NotesView {
     }
 
     @Override
-    public void addNotesToList(List<Note> notes) {
+    public void refreshNoteList(List<Note> notes) {
+        mNotes.clear();
         mNotes.addAll(notes);
-        mNotesAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void addNoteToList(Note note) {
-        mNotes.add(note);
         mNotesAdapter.notifyDataSetChanged();
     }
 }
