@@ -20,7 +20,7 @@ import id.ramadani.noteq.view.NotesView;
 public class NotesPresenter {
 
     private static final String TAG = NotesPresenter.class.getSimpleName();
-
+    
     private final NotesView notesView;
 
     private DatabaseReference mNoteRef;

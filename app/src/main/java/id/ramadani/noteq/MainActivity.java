@@ -17,6 +17,7 @@ import java.util.List;
 import id.ramadani.noteq.adapter.NotesAdapter;
 import id.ramadani.noteq.model.Note;
 import id.ramadani.noteq.presenter.NotesPresenter;
+import id.ramadani.noteq.util.MarginItemDecoration;
 import id.ramadani.noteq.view.NotesView;
 
 public class MainActivity extends AppCompatActivity implements NotesView {
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements NotesView {
         mNotesAdapter = new NotesAdapter(this, mNotes);
         mNotesPresenter = new NotesPresenter(this);
 
+        int itemMargin = getResources().getDimensionPixelSize(R.dimen.item_margin);
+        mRvNotes.addItemDecoration(new MarginItemDecoration(itemMargin));
         mRvNotes.setAdapter(mNotesAdapter);
         mRvNotes.setLayoutManager(new LinearLayoutManager(this));
 
