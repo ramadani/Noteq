@@ -54,7 +54,7 @@ public class NotesPresenter {
             }
         };
 
-        mNoteRef.addValueEventListener(valueEventListener);
+        mNoteRef.orderByKey().addValueEventListener(valueEventListener);
 
         mNotesEventListener = valueEventListener;
     }

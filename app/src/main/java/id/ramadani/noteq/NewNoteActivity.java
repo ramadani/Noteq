@@ -7,14 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import id.ramadani.noteq.presenter.NotePresenter;
+
 public class NewNoteActivity extends AppCompatActivity {
 
     private static final String TAG = NewNoteActivity.class.getSimpleName();
+
+    private NotePresenter mNotePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_note);
+
+        mNotePresenter = new NotePresenter();
 
         final EditText etNoteTitle = (EditText) findViewById(R.id.et_note_title);
         final EditText etNoteContent = (EditText) findViewById(R.id.et_note_content);
@@ -26,13 +32,10 @@ public class NewNoteActivity extends AppCompatActivity {
                 String title = etNoteTitle.getText().toString();
                 String content = etNoteContent.getText().toString();
 
-                save(title, content);
+                mNotePresenter.create(title, content);
+
+                onBackPressed();
             }
         });
-    }
-
-    private void save(String title, String content) {
-        Log.d(TAG, "Title: " + title);
-        Log.d(TAG, "Content: " + content);
     }
 }
