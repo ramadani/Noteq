@@ -8,15 +8,22 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Note {
+
+    private String key;
     private String title;
     private String content;
 
     public Note() {
     }
 
-    public Note(String title, String content) {
+    public Note(String key, String title, String content) {
+        this.key = key;
         this.title = title;
         this.content = content;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getTitle() {

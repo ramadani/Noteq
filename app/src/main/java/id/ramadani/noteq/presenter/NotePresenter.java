@@ -19,7 +19,7 @@ public class NotePresenter {
 
     public void create(String title, String content) {
         String key = mNoteRef.push().getKey();
-        Note note = new Note(title, content);
+        Note note = new Note(key, title, content);
 
         mNoteRef.child(key).setValue(note);
     }
