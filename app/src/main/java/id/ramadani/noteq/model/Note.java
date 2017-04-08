@@ -9,21 +9,21 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Note {
 
-    private String key;
+    private String uid;
     private String title;
     private String content;
 
     public Note() {
     }
 
-    public Note(String key, String title, String content) {
-        this.key = key;
+    public Note(String uid, String title, String content) {
+        this.uid = uid;
         this.title = title;
         this.content = content;
     }
 
-    public String getKey() {
-        return key;
+    public String getUid() {
+        return uid;
     }
 
     public String getTitle() {
