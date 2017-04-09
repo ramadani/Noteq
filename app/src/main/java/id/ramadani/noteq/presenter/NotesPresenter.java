@@ -50,7 +50,7 @@ public class NotesPresenter {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                Log.w(TAG, "loadNote:onCancelled", databaseError.toException());
             }
         };
 
